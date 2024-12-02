@@ -34,15 +34,33 @@
       <main>
         <section class="contact-form">
           <div class="wrapper">
-            <form target="_self">
-              <label for="fname">First Name:</label><br />
-              <input type="text" id="fname" placeholder="first Name" />
-              <label for="lname">Last Name:</label><br />
-              <input type="text" id="lname" placeholder="last Name" />
-              <label for="contact">Contact No:</label><br />
-              <input type="text" id="cname" placeholder="Contact No." />
-              <input type="submit" value="submit" />
-            </form>
+            <div class="form-container">
+              <form target="_self">
+                <h1>Contact form</h1>
+                <label for="fname">First Name:</label>
+                <input
+                  type="text"
+                  class="input-box"
+                  id="fname"
+                  placeholder="first Name"
+                />
+                <label for="lname">Last Name:</label>
+                <input
+                  type="text"
+                  class="input-box"
+                  id="lname"
+                  placeholder="last Name"
+                />
+                <label for="contact">Contact No:</label>
+                <input
+                  type="text"
+                  class="input-box"
+                  id="cname"
+                  placeholder="Contact No."
+                />
+                <input type="submit" id="submit-btn" value="submit" />
+              </form>
+            </div>
           </div>
         </section>
       </main>
