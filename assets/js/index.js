@@ -49,7 +49,15 @@ form.addEventListener("click", (event) => {
     lastNameError.classList.add("visible");
     isValid = false;
   } else {
-    firstNameError.classList.remove("visible");
+    lastNameError.classList.remove("visible");
+    isValid = true;
+  }
+
+  if (subject === "") {
+    subjectError.classList.add("visible");
+    isValid = false;
+  } else {
+    subjectError.classList.remove("visible");
     isValid = true;
   }
 
@@ -86,6 +94,8 @@ form.addEventListener("click", (event) => {
 
   console.log(data);
 });
+
+// add red border here
 
 // formContainer.style.display = "flex";
 //     let html = `<div class="table">
