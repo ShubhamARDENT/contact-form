@@ -222,7 +222,7 @@ input::-webkit-inner-spin-button {
 .form-container {
   background-color: #d8e6ff;
   margin-top: 50px;
-  min-height: 50vh;
+  min-height: 60vh;
   width: 70%;
   display: flex;
   justify-content: center;
@@ -237,34 +237,41 @@ input::-webkit-inner-spin-button {
 
 form h1 {
   font-size: 2rem;
-  margin-top: 10px;
+  margin-top: 40px;
   font-weight: 600;
 }
 
+form > span {
+  margin: 20px 0%;
+}
+
 /* labels hidden */
-.input-wrapper label,
-span {
+.input-wrapper label {
   display: none;
 }
 
-.input-wrapper3 label {
-  display: none;
-}
-
-.input-wrapper3 {
+.name-wrapper .input-wrapper {
   display: flex;
   flex-direction: column;
 }
 
-#cname,
-#ename {
-  width: 410px;
-  height: 40px;
+.name-wrapper {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 20px;
+  row-gap: 3px;
+}
+
+.input-box3 {
+  width: 510px;
+  height: 44px;
   padding: 0px 5%;
   font-size: 1rem;
   background-color: #9db8fb;
   border: none;
   color: black;
+  border-radius: 6px;
+  font-family: "Open Sans", sans-serif;
 }
 
 #cname::placeholder {
@@ -287,23 +294,29 @@ span {
   font-family: "Open Sans", sans-serif;
 }
 
+#subject::placeholder {
+  color: black;
+  font-family: "Open Sans", sans-serif;
+}
+
 .names {
   display: flex;
   padding-bottom: 40px;
 }
 
-#lname,
-#fname {
-  width: 200px;
-  height: 40px;
+.input-box {
+  width: 245px;
+  height: 44px;
   padding: 0px 10%;
   font-size: 1rem;
   background-color: #9db8fb;
+  border-radius: 6px;
   border: none;
+  font-family: "Open Sans", sans-serif;
 }
 
-#fname {
-  margin-right: 10px;
+input.error {
+  border: 2px solid red;
 }
 
 .headings {
@@ -315,12 +328,8 @@ span {
   display: block;
 }
 
-#cname {
-  margin: 40px 0%;
-}
-
 #submit-btn {
-  padding: 10px 22%;
+  padding: 10px 12%;
   background-color: #0155eb;
   border: none;
   color: white;
@@ -331,95 +340,73 @@ span {
 }
 
 #submit-btn:hover {
-  padding: 10px 22%;
+  padding: 10px 12%;
   background-color: white;
   border: 2px solid #0155eb;
   color: black;
 }
 
+.name-wrapper2 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.name-wrapper2 .input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* errors */
+.error-cname,
+.error-lname,
+.error-fname,
+.error-ename,
+.error-subject {
+  color: red;
+  margin-top: 9px;
+  margin-bottom: 10px;
+  visibility: hidden;
+  font-size: 0.8rem;
+}
+
+/* add class visible */
+.error-cname.visible,
+.error-lname.visible,
+.error-fname.visible,
+.error-ename.visible,
+.error-subject.visible {
+  visibility: visible;
+}
+
 /* output */
 
-.output .wrapper {
+.contact-list .wrapper {
   display: flex;
   justify-content: center;
-}
-
-.tables span {
-  display: block;
-  font-size: 1.2rem;
-  font-family: "Open Sans", sans-serif;
-}
-
-.output .wrapper .form-container2 {
-  display: block;
-  padding: 10px;
-}
-
-#output {
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
 }
 
 .form-container2 {
-  width: 80%;
-  margin-top: 50px;
-  min-height: 50vh;
-  display: flex;
-  justify-content: center;
   background-color: #d8e6ff;
+  margin-top: 50px;
+  min-height: 60vh;
+  width: 82%;
+  display: none;
+  border-radius: 25px;
+  flex-direction: column;
 }
 
-.error-fname,
-.error-lname {
-  margin-top: 20px;
-  margin-right: 5px;
-  color: red;
-  font-weight: 600;
+/* above should be seen only when values are added */
+
+.tables2 span {
+  display: flex;
 }
 
-.error-ename {
-  color: red;
-  font-weight: 600;
-  font-size: 1rem;
-  margin-top: 20px;
-}
-
-.error-cname {
-  color: red;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.form-container2 .table {
+.tables2,
+.tables3 {
   display: flex;
   justify-content: space-between;
-  padding: 50px 5%;
-}
-
-.table span {
-  display: block;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: "Open Sans", sans-serif;
-}
-
-.table3 {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px 5%;
-}
-
-.table3 span {
-  display: block;
-  font-size: 1.5rem;
-}
-.table2 {
-  display: flex;
-  justify-content: space-between;
-  padding: 50px 5%;
-}
-
-.table2 span {
-  display: block;
+  padding: 30px 5%;
+  font-size: 1.4rem;
+  width: 100%;
 }
