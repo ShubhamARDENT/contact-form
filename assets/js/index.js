@@ -101,8 +101,7 @@ function dataRender() {
   data.map((item, index) => {
     outputContainer.style.display = "flex";
 
-    
-
+    // add list a one at time
     contacts.appendChild(`<li class="heading">
                     <span>${item.firstName}</span>
                     <span>${item.lastName}</span>
