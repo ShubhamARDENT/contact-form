@@ -370,13 +370,13 @@ input::-webkit-inner-spin-button {
 }
 
 .contact-form .wrapper {
-  width: 70%;
+  width: 60%;
   display: flex;
   justify-content: center;
 }
 
 .form-container {
-  width: 55%;
+  width: 100%;
   padding: 50px 5%;
   background-color: white;
   margin-top: 50px;
@@ -422,7 +422,7 @@ form > span {
 
 .fname {
   margin-bottom: 10px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -442,8 +442,8 @@ form > span {
 
 .input-box {
   height: 44px;
-  padding: 0px 10%;
-  font-size: 1rem;
+  padding: 0px 5%;
+  font-size: 1.2rem;
   background-color: white;
   border: 1px solid rgb(174, 171, 171);
   border-radius: 6px;
@@ -470,7 +470,7 @@ input.error {
 }
 
 #submit-btn {
-  padding: 15px 41%;
+  padding: 15px 26%;
   background-color: #6365ef;
   border: none;
   color: white;
@@ -481,7 +481,7 @@ input.error {
 }
 
 #submit-btn:hover {
-  padding: 15px 41%;
+  padding: 15px 26%;
   background-color: white;
   border: 2px solid#6365ef;
   color: black;
@@ -517,22 +517,26 @@ input.error {
 }
 
 .output-display {
-  width: 80%;
   border-radius: 16px;
   background-color: white;
   /* display: none; */
   flex-direction: column;
   margin-top: 50px;
+  width: 100%;
 }
 
-/* above should be seen only when values are added */
-
 .output-heading {
-  padding: 25px 1%;
   display: flex;
+  text-transform: uppercase;
+}
+.output-heading span {
+  width: 40%;
+}
+
+.output-list {
+  padding: 25px 5%;
   font-size: 1rem;
   font-weight: 400;
-  justify-content: space-around;
   font-family: "Rubik", sans-serif;
   background-color: #6365ef;
   border-top-right-radius: 10px;
@@ -540,7 +544,31 @@ input.error {
   color: white;
 }
 
-/* list rendering ul */
+/* list rendering ul
 .contact-list {
   display: flex;
+  justify-content: space-between;
+  padding: 30px 5%;
+  font-size: 1.2rem;
+}
+
+.contact-list li {
+  display: flex;
+  font-weight: 400;
+  justify-content: space-between;
+  font-family: "Rubik", sans-serif;
+  width: 40%;
+  color: black;
+} */
+
+.output-list:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.heading li:first-child {
+  font-weight: 600;
+}
+
+.heading li:nth-child(5) {
+  color: gray;
 }
