@@ -99,21 +99,16 @@ form.addEventListener("click", (event) => {
 function dataRender() {
   contacts.innerHTML = "";
   data.map((item, index) => {
-    console.log(data, "renderer");
-
     outputContainer.style.display = "flex";
-    const list = document.createElement("li");
 
-    list.textContent = `#${index + 1}
-                ${item.firstName}
-                ${item.lastName}
-                ${item.subjectData}
-                ${item.email}
-                ${item.contactNumber}`;
+    
 
-    contacts.appendChild(list);
+    contacts.appendChild(`<li class="heading">
+                    <span>${item.firstName}</span>
+                    <span>${item.lastName}</span>
+                    <span>${item.subjectData}</span>
+                    <span>${item.email}</span>
+                    <span>${item.contactNumber}</span>
+                </li>`);
   });
 }
-
-// add red border on  input box
-// use ul li on list render
