@@ -181,6 +181,7 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-family: sans-serif;
+  background-color: #f4f5f7;
 }
 
 a {
@@ -214,19 +215,18 @@ input::-webkit-inner-spin-button {
 }
 
 .contact-form .wrapper {
+  width: 70%;
   display: flex;
   justify-content: center;
-  width: 70%;
 }
 
 .form-container {
-  background-color: #d8e6ff;
+  width: 55%;
+  padding: 50px 5%;
+  background-color: white;
   margin-top: 50px;
-  min-height: 60vh;
-  width: 70%;
   display: flex;
-  justify-content: center;
-  border-radius: 25px;
+  flex-direction: column;
 }
 
 .form-container > form {
@@ -235,19 +235,8 @@ input::-webkit-inner-spin-button {
   align-items: center;
 }
 
-form h1 {
-  font-size: 2rem;
-  margin-top: 40px;
-  font-weight: 600;
-}
-
 form > span {
   margin: 20px 0%;
-}
-
-/* labels hidden */
-.input-wrapper label {
-  display: none;
 }
 
 .name-wrapper .input-wrapper {
@@ -256,46 +245,38 @@ form > span {
 }
 
 .name-wrapper {
+  width: 100%;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 20px;
-  row-gap: 3px;
 }
 
 .input-box3 {
-  width: 510px;
-  height: 44px;
-  padding: 0px 5%;
+  padding: 10px 2%;
   font-size: 1rem;
-  background-color: #9db8fb;
-  border: none;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid rgb(174, 171, 171);
   color: black;
   border-radius: 6px;
+
+  font-family: "Open Sans", sans-serif;
+  width: 100%;
+}
+
+.fname {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
   font-family: "Open Sans", sans-serif;
 }
 
-#cname::placeholder {
-  color: black;
-  font-family: "Open Sans", sans-serif;
-}
-
-#ename::placeholder {
-  color: black;
-  font-family: "Open Sans", sans-serif;
-}
-
-#lname::placeholder {
-  color: black;
-  font-family: "Open Sans", sans-serif;
-}
-
-#fname::placeholder {
-  color: black;
-  font-family: "Open Sans", sans-serif;
-}
-
+#cname::placeholder,
+#ename::placeholder,
+#lname::placeholder,
+#fname::placeholder,
 #subject::placeholder {
-  color: black;
+  color: rgb(175, 173, 173);
   font-family: "Open Sans", sans-serif;
 }
 
@@ -305,13 +286,12 @@ form > span {
 }
 
 .input-box {
-  width: 245px;
   height: 44px;
   padding: 0px 10%;
   font-size: 1rem;
-  background-color: #9db8fb;
+  background-color: white;
+  border: 1px solid rgb(174, 171, 171);
   border-radius: 6px;
-  border: none;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -320,41 +300,36 @@ input.error {
 }
 
 .headings {
-  padding: 40px 5%;
   text-align: center;
+  padding: 5px 0 30px 0;
+}
+
+.headings > h1 {
+  font-weight: 500;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
 }
 
 .headings > span {
-  display: block;
+  color: gray;
 }
 
 #submit-btn {
-  padding: 10px 12%;
-  background-color: #0155eb;
+  padding: 15px 41%;
+  background-color: #6365ef;
   border: none;
   color: white;
-  font-size: 1.2rem;
-  border-radius: 26px;
-  margin: 20px 0%;
-  border: 2px solid #0155eb;
-}
-
-#submit-btn:hover {
-  padding: 10px 12%;
-  background-color: white;
-  border: 2px solid #0155eb;
-  color: black;
-}
-
-.name-wrapper2 {
-  display: flex;
-  flex-direction: column;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 2px solid #6365ef;
   margin-top: 10px;
 }
 
-.name-wrapper2 .input-wrapper {
-  display: flex;
-  flex-direction: column;
+#submit-btn:hover {
+  padding: 15px 41%;
+  background-color: white;
+  border: 2px solid#6365ef;
+  color: black;
 }
 
 /* errors */
@@ -381,32 +356,36 @@ input.error {
 
 /* output */
 
-.contact-list .wrapper {
+.contacts .wrapper {
   display: flex;
   justify-content: center;
 }
 
-.form-container2 {
-  background-color: #d8e6ff;
-  margin-top: 50px;
-  min-height: 60vh;
-  width: 82%;
-  display: none;
-  border-radius: 25px;
+.output-display {
+  width: 80%;
+  border-radius: 16px;
+  background-color: white;
+  /* display: none; */
   flex-direction: column;
+  margin-top: 50px;
 }
 
 /* above should be seen only when values are added */
 
-.tables2 span {
+.output-heading {
+  padding: 25px 1%;
   display: flex;
+  font-size: 1rem;
+  font-weight: 400;
+  justify-content: space-around;
+  font-family: "Rubik", sans-serif;
+  background-color: #6365ef;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  color: white;
 }
 
-.tables2,
-.tables3 {
+/* list rendering ul */
+.contact-list {
   display: flex;
-  justify-content: space-between;
-  padding: 30px 5%;
-  font-size: 1.4rem;
-  width: 100%;
 }
