@@ -2,11 +2,12 @@
 const firstName = document.getElementById("fname");
 const lastName = document.getElementById("lname");
 const contactNo = document.getElementById("cname");
-const subjectElement = document.getElementById("subject");
 const email = document.getElementById("ename");
+const subjectElement = document.getElementById("subject");
 const grid = document.querySelector(".name-wrapper");
 const submitBtn = document.querySelector("#submit-btn");
-const formContainer = document.querySelector(".form-container2");
+const contacts = document.querySelector(".contact-list");
+const outputContainer = document.querySelector(".output-display");
 
 // errors
 const firstNameError = document.querySelector(".error-fname");
@@ -24,50 +25,51 @@ form.addEventListener("click", (event) => {
   const phonePattern = /^(?:\+91|91)?[6-9][0-9]{9}$/;
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  //   values
-  const fname = firstName.value;
-  const lname = lastName.value;
-  const subject = subjectElement.value;
-  const emailData = email.value;
-  const phone = contactNo.value;
+  //values
+  let fname = firstName.value;
+  let lname = lastName.value;
+  let subject = subjectElement.value;
+  let emailData = email.value;
+  let phone = contactNo.value;
+
   const isEmailValid = emailPattern.test(emailData);
-
   const isPhoneValid = phonePattern.test(phone);
-  // use flag
 
-  let isValid = false;
+  let isValid = true;
 
   if (fname.length < 3) {
     firstNameError.classList.add("visible");
     isValid = false;
   } else {
     firstNameError.classList.remove("visible");
-    isValid = true;
   }
 
   if (lname.length < 3) {
     lastNameError.classList.add("visible");
     isValid = false;
   } else {
-    firstNameError.classList.remove("visible");
-    isValid = true;
+    lastNameError.classList.remove("visible");
+  }
+
+  if (subject === "") {
+    subjectError.classList.add("visible");
+    isValid = false;
+  } else {
+    subjectError.classList.remove("visible");
   }
 
   if (!isPhoneValid) {
-    //
+    isValid = false;
     contactError.classList.add("visible");
   } else {
-    //
     contactError.classList.remove("visible");
-    isValid = false;
   }
 
   if (!isEmailValid) {
     emailError.classList.add("visible");
-    isValid = true;
+    isValid = false;
   } else {
     emailError.classList.remove("visible");
-    isValid = false;
   }
 
   // saving data in array
@@ -80,19 +82,38 @@ form.addEventListener("click", (event) => {
       contactNumber: phone,
       subjectData: subject,
     };
-
     data.push(Details);
-  }
+    //render data
+    dataRender();
+    console.log(data);
 
-  console.log(data);
+    // make form values empty
+    firstName.value = "";
+    lastName.value = "";
+    subjectElement.value = "";
+    email.value = "";
+    contactNo.value = "";
+  }
 });
 
-// formContainer.style.display = "flex";
-//     let html = `<div class="table">
-//                     <span>${fname}</span>
-//                     <span>${lname}</span>
-//                     <span>${subject}</span>
-//                     <span>${emailData}</span>
-//                     <span>${phone}</span>
-//                   </div>`;
-//     formContainer.insertAdjacentHTML("beforeend", html);
+function dataRender() {
+  contacts.innerHTML = "";
+  data.map((item, index) => {
+    console.log(data, "renderer");
+
+    outputContainer.style.display = "flex";
+    const list = document.createElement("li");
+
+    list.textContent = `#${index + 1}
+                ${item.firstName}
+                ${item.lastName}
+                ${item.subjectData}
+                ${item.email}
+                ${item.contactNumber}`;
+
+    contacts.appendChild(list);
+  });
+}
+
+// add red border on  input box
+// use ul li on list render
