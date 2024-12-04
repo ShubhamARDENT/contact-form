@@ -35,6 +35,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Default style-sheet is for 'media' type screen (color computer display).  -->
     <link rel="stylesheet" media="screen" href="assets/css/styles.css" />
   </head>
@@ -47,85 +53,98 @@
         <section class="contact-form">
           <div class="wrapper">
             <div class="form-container">
-              <form target="_self" class="contactform">
-                <h1>Contact form</h1>
-                <span>we'll contact you soon</span>
+              <div class="headings">
+                <h1>Contact Us</h1>
+                <span>Fill Up the form below to send us a message</span>
+              </div>
+              <form class="contactform">
                 <div class="name-wrapper">
                   <div class="input-wrapper">
-                    <label for="fname">First Name:</label>
+                    <label class="fname"> First Name</label>
                     <input
                       type="text"
                       class="input-box"
                       id="fname"
-                      placeholder="First Name"
+                      placeholder="John"
                       minlength="3"
                     />
                     <span class="error-fname"
-                      >please enter valid first name</span
+                      >Please enter valid first name</span
                     >
                   </div>
                   <div class="input-wrapper">
-                    <label for="lname">Last Name:</label>
+                    <label class="fname">Last Name</label>
                     <input
                       type="text"
                       class="input-box"
                       id="lname"
-                      placeholder="Last Name"
+                      placeholder="Doe"
                       minlength="3"
                     />
                     <span class="error-lname"
-                      >please enter valid last name</span
+                      >Please enter valid last name</span
                     >
                   </div>
                   <div class="input-wrapper">
+                    <span class="fname">Email Address</span>
                     <input
                       type="text"
-                      id="subject"
-                      placeholder="Subject"
+                      id="ename"
+                      placeholder="you@company.com"
                       class="input-box"
                     />
-                    <span class="error-subject">subject cannot be empty</span>
+                    <span class="error-ename">Please enter a valid email</span>
                   </div>
                   <div class="input-wrapper">
+                    <span class="fname">Phone Number</span>
                     <input
                       type="text"
                       class="input-box"
                       id="cname"
-                      placeholder="Contact No."
+                      placeholder="+1 (555) 1234-567"
                     />
+
                     <span class="error-cname"
-                      >please enter a valid contact No</span
+                      >Please enter a valid contact No</span
                     >
                   </div>
                 </div>
-                <!-- email section -->
-                <div class="name-wrapper2">
-                  <div class="input-wrapper">
-                    <input
-                      type="email"
-                      class="input-box3"
-                      id="ename"
-                      placeholder="Email Id"
-                    />
-                    <span class="error-ename">please enter a valid email</span>
-                  </div>
+                <div class="input-wrapper">
+                  <label class="mname">Your Message</label>
+                  <textarea
+                    placeholder="Your Message"
+                    class="input-box3"
+                    id="subject"
+                    rows="6"
+                    cols="45"
+                  ></textarea>
+                  <span class="error-subject">subject cannot be empty</span>
                 </div>
-                <input type="submit" id="submit-btn" value="submit" />
+
+                <input type="submit" id="submit-btn" value="Send Message" />
               </form>
             </div>
           </div>
         </section>
         <!-- output -->
-        <section class="contact-list">
+        <section class="contacts">
           <div class="wrapper">
-            <div class="form-container2">
-              <div class="tables2">
-                <span>First name</span>
-                <span>Last name</span>
-                <span>Subject</span>
-                <span>Email id</span>
-                <span>Contact No</span>
-              </div>
+            <div class="output-display">
+              <ul class="output-heading">
+                <li>ID</li>
+                <li>FIRST NAME</li>
+                <li>LAST NAME</li>
+                <li>SUBJECT</li>
+                <li>EMAIL ID</li>
+                <li>CONTACT NO</li>
+              </ul>
+              <ul class="contact-list">
+                <li>First name</li>
+                <li>Last name</li>
+                <li>Subject</li>
+                <li>Email id</li>
+                <li>Contact no</li>
+              </ul>
             </div>
           </div>
         </section>
