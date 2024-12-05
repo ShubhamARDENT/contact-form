@@ -17,7 +17,7 @@ const subjectError = document.querySelector(".error-subject");
 
 const form = document.querySelector(".contactform");
 
-let data = [];
+let data = JSON.parse(localStorage.getItem("contacts")) || [];
 
 form.addEventListener("click", (event) => {
   event.preventDefault();
@@ -105,12 +105,14 @@ form.addEventListener("click", (event) => {
   }
 });
 
+dataRender();
+
 // renders data
 function dataRender() {
   contacts.innerHTML = "";
   const contactDetails = JSON.parse(localStorage.getItem("contacts"));
   console.log(contactDetails, "from local storage");
-  
+
   if (contactDetails.length !== 0) {
     outputContainer.style.display = "flex";
   }
