@@ -376,8 +376,8 @@ input::-webkit-inner-spin-button {
 }
 
 .form-container {
-  width: 100%;
-  padding: 50px 5%;
+  width: 60%;
+  padding: 50px 0%;
   background-color: white;
   margin-top: 50px;
   display: flex;
@@ -397,13 +397,20 @@ form > span {
 .name-wrapper .input-wrapper {
   display: flex;
   flex-direction: column;
+  width: 40%;
+  margin: 0 10px;
+}
+
+.contact-form .input-wrapper-5 {
+  width: 82%;
 }
 
 .name-wrapper {
   width: 100%;
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .input-box3 {
@@ -460,7 +467,7 @@ input.error {
 }
 
 .headings > h1 {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.8rem;
   margin-bottom: 15px;
 }
@@ -470,7 +477,7 @@ input.error {
 }
 
 #submit-btn {
-  padding: 15px 26%;
+  padding: 20px 33%;
   background-color: #6365ef;
   border: none;
   color: white;
@@ -481,7 +488,7 @@ input.error {
 }
 
 #submit-btn:hover {
-  padding: 15px 26%;
+  padding: 20px 33%;
   background-color: white;
   border: 2px solid#6365ef;
   color: black;
@@ -519,16 +526,17 @@ input.error {
 .output-display {
   border-radius: 16px;
   background-color: white;
-  /* display: none; */
+  display: none;
   flex-direction: column;
   margin-top: 50px;
-  width: 100%;
+  width: 60%;
 }
 
 .output-heading {
   display: flex;
   text-transform: uppercase;
 }
+
 .output-heading span {
   width: 40%;
 }
@@ -544,31 +552,64 @@ input.error {
   color: white;
 }
 
-/* list rendering ul
 .contact-list {
   display: flex;
-  justify-content: space-between;
-  padding: 30px 5%;
-  font-size: 1.2rem;
+  flex-direction: column;
 }
 
-.contact-list li {
+.contact-list li:nth-child(even) {
+  background-color: #f5f6f8;
+}
+
+.heading {
+  padding: 35px 5%;
   display: flex;
-  font-weight: 400;
-  justify-content: space-between;
-  font-family: "Rubik", sans-serif;
-  width: 40%;
-  color: black;
-} */
-
-.output-list:nth-child(even) {
-  background-color: #dddddd;
+  font-family: "Rubik";
+  font-size: 1rem;
 }
 
-.heading li:first-child {
+.heading span {
+  width: 40%;
+}
+
+.heading span:first-child {
   font-weight: 600;
 }
 
-.heading li:nth-child(5) {
-  color: gray;
+.heading span:nth-child(5) {
+  color: #9da1a4;
+}
+
+.contact-subject {
+  color: #8a8e9a;
+  background-color: #e6e9f2;
+  padding: 5px 5%;
+  border-radius: 26px;
+}
+
+@media screen and (max-width: 768px) {
+  .contact-form .wrapper {
+    width: 95%;
+  }
+
+  .name-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .name-wrapper .input-wrapper {
+    width: 84%;
+  }
+
+  .contacts .wrapper {
+    width: 95%;
+  }
+
+  .output-list {
+    padding: 25px 1%;
+    font-size: 0.8rem;
+  }
 }
