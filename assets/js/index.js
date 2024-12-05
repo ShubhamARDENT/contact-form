@@ -80,6 +80,8 @@ form.addEventListener("click", (event) => {
     emailError.classList.remove("visible");
   }
 
+
+  //before pushing check if data already access
   // saving data in array
   if (isValid) {
     // data
@@ -94,6 +96,7 @@ form.addEventListener("click", (event) => {
     data.push(Details);
     console.log(data, "after pushing in data array");
     localStorage.setItem("contacts", JSON.stringify(data));
+
     dataRender();
 
     // make form values empty
