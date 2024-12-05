@@ -6,9 +6,9 @@ const email = document.getElementById("ename");
 const subjectElement = document.getElementById("subject");
 const grid = document.querySelector(".name-wrapper");
 const submitBtn = document.querySelector("#submit-btn");
-const contacts = document.querySelector(".contact-list");
 const outputContainer = document.querySelector(".output-display");
 
+const contacts = document.querySelector(".contact-list");
 // errors
 const firstNameError = document.querySelector(".error-fname");
 const lastNameError = document.querySelector(".error-lname");
@@ -100,15 +100,16 @@ function dataRender() {
   contacts.innerHTML = "";
   data.map((item, index) => {
     outputContainer.style.display = "flex";
-
-    
-
-    contacts.appendChild(`<li class="heading">
-                    <span>${item.firstName}</span>
+    // list creation
+    const listitem = document.createElement("li");
+    // adding class to each list
+    listitem.className = "heading";
+    listitem.innerHTML = `<span>${item.firstName}</span>
                     <span>${item.lastName}</span>
-                    <span>${item.subjectData}</span>
+            
                     <span>${item.email}</span>
-                    <span>${item.contactNumber}</span>
-                </li>`);
+                    <span>${item.contactNumber}</span>`;
+
+    contacts.appendChild(listitem);
   });
 }
