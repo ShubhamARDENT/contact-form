@@ -396,9 +396,9 @@ form > span {
 }
 
 .name-wrapper .input-wrapper {
+  width: 40%;
   display: flex;
   flex-direction: column;
-  width: 40%;
   margin: 0 10px;
 }
 
@@ -415,6 +415,7 @@ form > span {
 }
 
 .input-box3 {
+  width: 100%;
   padding: 10px 2%;
   font-size: 1rem;
   margin-bottom: 10px;
@@ -423,9 +424,7 @@ form > span {
   border: 1px solid rgb(174, 171, 171);
   color: black;
   border-radius: 6px;
-
   font-family: "Open Sans", sans-serif;
-  width: 100%;
 }
 
 .fname {
@@ -518,6 +517,18 @@ input.error {
 .error-ename.visible,
 .error-subject.visible {
   visibility: visible;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.error-fname2 {
+  color: red;
+  margin-top: 9px;
+  margin-bottom: 10px;
+  visibility: hidden;
+  font-size: 0.8rem;
 }
 
 /* output */
