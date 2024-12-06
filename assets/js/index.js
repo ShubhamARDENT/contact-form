@@ -4,7 +4,7 @@ const lastName = document.getElementById("lname");
 const contactNo = document.getElementById("cname");
 const email = document.getElementById("ename");
 const subjectElement = document.getElementById("subject");
-const grid = document.querySelector(".name-wrapper");
+
 const submitBtn = document.querySelector("#submit-btn");
 const outputContainer = document.querySelector(".output-display");
 const contacts = document.querySelector(".contact-list");
@@ -15,16 +15,18 @@ const contactError = document.querySelector(".error-cname");
 const emailError = document.querySelector(".error-ename");
 const subjectError = document.querySelector(".error-subject");
 
+// validation errors
+
 const form = document.querySelector(".contactform");
 
 let data = JSON.parse(localStorage.getItem("contacts")) || [];
+// localStorage.clear();
 
-form.addEventListener("click", (event) => {
+// disable submit btn
+
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const phonePattern = /^(?:\+91|91)?[6-9][0-9]{9}$/;
-  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const namePattern = /^[a-zA-Z]+$/;
   //values
   let fname = firstName.value;
   let lname = lastName.value;
@@ -32,58 +34,33 @@ form.addEventListener("click", (event) => {
   let emailData = email.value;
   let phone = contactNo.value;
 
-  const isEmailValid = emailPattern.test(emailData);
-  const isPhoneValid = phonePattern.test(phone);
-  const isNameValid1 = namePattern.test(fname);
-  const isNameValid2 = namePattern.test(lname);
+  const {
+    fnameValid,
+    lnameValid,
+    subValid,
+    emailValid,
+    phoneValid,
+    isEmailExist,
+  } = ValidateForm();
 
-  let isValid = true;
+  console.log(
+    fnameValid,
+    lnameValid,
+    subValid,
+    emailValid,
+    phoneValid,
+    isEmailExist,
+    "isemailExist"
+  );
 
-  if (fname.length < 3) {
-    firstNameError.classList.add("visible");
-    isValid = false;
-  } else if (!isNameValid1) {
-    firstNameError.classList.add("visible");
-    isValid = false;
-  } else {
-    firstNameError.classList.remove("visible");
-  }
-
-  if (lname.length < 3) {
-    lastNameError.classList.add("visible");
-    isValid = false;
-  } else if (!isNameValid2) {
-    lastNameError.classList.add("visible");
-    isValid = false;
-  } else {
-    lastNameError.classList.remove("visible");
-  }
-
-  if (subject === "") {
-    subjectError.classList.add("visible");
-    isValid = false;
-  } else {
-    subjectError.classList.remove("visible");
-  }
-
-  if (!isPhoneValid) {
-    isValid = false;
-    contactError.classList.add("visible");
-  } else {
-    contactError.classList.remove("visible");
-  }
-
-  if (!isEmailValid) {
-    emailError.classList.add("visible");
-    isValid = false;
-  } else {
-    emailError.classList.remove("visible");
-  }
-
-
-  //before pushing check if data already access
-  // saving data in array
-  if (isValid) {
+  if (
+    fnameValid &&
+    lnameValid &&
+    subValid &&
+    emailValid &&
+    phoneValid &&
+    isEmailExist
+  ) {
     // data
     const Details = {
       firstName: fname,
@@ -94,9 +71,10 @@ form.addEventListener("click", (event) => {
     };
 
     data.push(Details);
-    console.log(data, "after pushing in data array");
+    // console.log(data, "before pushing in local storage array");
     localStorage.setItem("contacts", JSON.stringify(data));
 
+    //render data fromm validated data
     dataRender();
 
     // make form values empty
@@ -108,19 +86,20 @@ form.addEventListener("click", (event) => {
   }
 });
 
+//called to not let list disappear
 dataRender();
 
 // renders data
 function dataRender() {
   contacts.innerHTML = "";
-  const contactDetails = JSON.parse(localStorage.getItem("contacts"));
-  console.log(contactDetails, "from local storage");
-
-  if (contactDetails.length !== 0) {
+  const contactDetails = JSON.parse(localStorage.getItem("contacts")) || [];
+  // console.log(contactDetails, "from where data renders");
+  // console.log(contactDetails.length);
+  if (contactDetails.length >= 1) {
     outputContainer.style.display = "flex";
   }
 
-  contactDetails.map((item, index) => {
+  contactDetails.forEach((item, index) => {
     // list creation
     const listitem = document.createElement("li");
     // adding class to each list
@@ -134,4 +113,117 @@ function dataRender() {
   });
 }
 
-// localStorage.clear();
+function ValidateForm() {
+  const phonePattern = /^(?:\+91|91)?[6-9][0-9]{9}$/;
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const namePattern = /^[a-zA-Z]+$/;
+
+  let fname = firstName.value;
+  let lname = lastName.value;
+  let emailData = email.value;
+  let phone = contactNo.value;
+  let subject = subjectElement.value;
+
+  const isEmailValid = emailPattern.test(emailData);
+  const isPhoneValid = phonePattern.test(phone);
+  const isNameValid1 = namePattern.test(fname);
+  const isNameValid2 = namePattern.test(lname);
+
+  let fnameValid = false;
+  let lnameValid = false;
+  let subValid = false;
+  let phoneValid = false;
+  let emailValid = false;
+  let isPhoneExist = false;
+  let isEmailExist = false;
+
+  if (fname.length < 3) {
+    showErrorMessage(firstNameError, "please enter more than 3 letters");
+    fnameValid = false;
+  } else if (!isNameValid1) {
+    fnameValid = false;
+    showErrorMessage(firstNameError, "only alphabets allowed");
+  } else {
+    hideErrorMessage(firstNameError, "");
+    fnameValid = true;
+  }
+
+  if (lname.length < 3) {
+    showErrorMessage(lastNameError, "please enter more than 3 letters");
+    lnameValid = false;
+  } else if (!isNameValid2) {
+    showErrorMessage(lastNameError, "only alphabets allowed");
+    lnameValid = false;
+  } else {
+    hideErrorMessage(lastNameError, "");
+    lnameValid = true;
+  }
+
+  if (subject === "") {
+    showErrorMessage(subjectError, "subject cannot be empty");
+    subValid = false;
+  } else {
+    showErrorMessage(subjectError, "");
+    subValid = true;
+  }
+
+  if (!isPhoneValid) {
+    phoneValid = false;
+    showErrorMessage(contactError, "Please enter a valid contact No");
+  } else {
+    hideErrorMessage(contactError, "");
+    phoneValid = true;
+  }
+
+  if (!isEmailValid) {
+    showErrorMessage(emailError, "please enter a valid email");
+    emailValid = false;
+  } else {
+    hideErrorMessage(emailError, "");
+    emailValid = true;
+  }
+
+  const ExistingData = JSON.parse(localStorage.getItem("contacts")) || [];
+
+  ExistingData.forEach((item) => {
+    if (emailData == item.email) {
+      showErrorMessage(emailError, "email already exists");
+      console.log("here");
+      return (isEmailExist = false);
+    } else {
+      hideErrorMessage(emailError, "");
+      return (isEmailExist = true);
+    }
+  });
+
+  return {
+    fnameValid,
+    lnameValid,
+    subValid,
+    phoneValid,
+    emailValid,
+    isEmailExist,
+  };
+}
+
+function showErrorMessage(element, text) {
+  element.classList.add("visible");
+  element.innerHTML = text;
+}
+
+function hideErrorMessage(element, text) {
+  element.classList.remove("visible");
+  element.innerHTML = text;
+}
+
+firstName.onblur = ValidateForm;
+lastName.onblur = ValidateForm;
+
+subjectElement.onchange = ValidateForm;
+
+firstName.onkeyup = ValidateForm;
+lastName.onkeyup = ValidateForm;
+email.onkeyup = ValidateForm;
+contactNo.onkeyup = ValidateForm;
+
+// console.log(JSON.parse(localStorage.getItem("contacts")));
