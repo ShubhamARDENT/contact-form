@@ -15,15 +15,12 @@ const contactError = document.querySelector(".error-cname");
 const emailError = document.querySelector(".error-ename");
 const subjectError = document.querySelector(".error-subject");
 
-// validation errors
-
 const form = document.querySelector(".contactform");
 
 let data = JSON.parse(localStorage.getItem("contacts")) || [];
 // localStorage.clear();
 
 // disable submit btn
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -39,27 +36,19 @@ form.addEventListener("submit", (event) => {
     lnameValid,
     subValid,
     emailValid,
-    phoneValid,
+    isPhoneValid,
     isEmailExist,
+    isPhoneExist,
   } = ValidateForm();
-
-  console.log(
-    fnameValid,
-    lnameValid,
-    subValid,
-    emailValid,
-    phoneValid,
-    isEmailExist,
-    "isemailExist"
-  );
 
   if (
     fnameValid &&
     lnameValid &&
     subValid &&
     emailValid &&
-    phoneValid &&
-    isEmailExist
+    isPhoneValid &&
+    isEmailExist &&
+    isPhoneExist
   ) {
     // data
     const Details = {
@@ -71,7 +60,7 @@ form.addEventListener("submit", (event) => {
     };
 
     data.push(Details);
-    // console.log(data, "before pushing in local storage array");
+
     localStorage.setItem("contacts", JSON.stringify(data));
 
     //render data fromm validated data
@@ -125,18 +114,19 @@ function ValidateForm() {
   let subject = subjectElement.value;
 
   const isEmailValid = emailPattern.test(emailData);
+  console.log(isEmailValid);
   const isPhoneValid = phonePattern.test(phone);
+  console.log(isPhoneValid);
   const isNameValid1 = namePattern.test(fname);
   const isNameValid2 = namePattern.test(lname);
 
+  // flags
   let fnameValid = false;
   let lnameValid = false;
   let subValid = false;
-  let phoneValid = false;
   let emailValid = false;
-  let isPhoneExist = false;
-  let isEmailExist = false;
 
+  // console.log(emailValid, "inital");
   if (fname.length < 3) {
     showErrorMessage(firstNameError, "please enter more than 3 letters");
     fnameValid = false;
@@ -168,11 +158,9 @@ function ValidateForm() {
   }
 
   if (!isPhoneValid) {
-    phoneValid = false;
     showErrorMessage(contactError, "Please enter a valid contact No");
   } else {
     hideErrorMessage(contactError, "");
-    phoneValid = true;
   }
 
   if (!isEmailValid) {
@@ -183,16 +171,20 @@ function ValidateForm() {
     emailValid = true;
   }
 
+  // for existing data
   const ExistingData = JSON.parse(localStorage.getItem("contacts")) || [];
+  let isPhoneExist = true;
+  let isEmailExist = true;
 
   ExistingData.forEach((item) => {
     if (emailData == item.email) {
       showErrorMessage(emailError, "email already exists");
-      console.log("here");
-      return (isEmailExist = false);
-    } else {
-      hideErrorMessage(emailError, "");
-      return (isEmailExist = true);
+      isEmailExist = false;
+    }
+
+    if (phone == item.contactNo) {
+      showErrorMessage(contactError, "phone no already exists");
+      isPhoneExist = false;
     }
   });
 
@@ -200,9 +192,10 @@ function ValidateForm() {
     fnameValid,
     lnameValid,
     subValid,
-    phoneValid,
     emailValid,
+    isPhoneValid,
     isEmailExist,
+    isPhoneExist,
   };
 }
 
