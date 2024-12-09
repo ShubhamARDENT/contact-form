@@ -20,7 +20,6 @@ const form = document.querySelector(".contactform");
 let data = JSON.parse(localStorage.getItem("contacts")) || [];
 // localStorage.clear();
 
-// disable submit btn
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -82,8 +81,7 @@ dataRender();
 function dataRender() {
   contacts.innerHTML = "";
   const contactDetails = JSON.parse(localStorage.getItem("contacts")) || [];
-  // console.log(contactDetails, "from where data renders");
-  // console.log(contactDetails.length);
+
   if (contactDetails.length >= 1) {
     outputContainer.style.display = "flex";
   }
@@ -114,9 +112,7 @@ function ValidateForm() {
   let subject = subjectElement.value;
 
   const isEmailValid = emailPattern.test(emailData);
-  console.log(isEmailValid);
   const isPhoneValid = phonePattern.test(phone);
-  console.log(isPhoneValid);
   const isNameValid1 = namePattern.test(fname);
   const isNameValid2 = namePattern.test(lname);
 
@@ -126,7 +122,6 @@ function ValidateForm() {
   let subValid = false;
   let emailValid = false;
 
-  // console.log(emailValid, "inital");
   if (fname.length < 3) {
     showErrorMessage(firstNameError, "please enter more than 3 letters");
     fnameValid = false;
