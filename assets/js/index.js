@@ -177,12 +177,12 @@ function ValidateForm() {
   let isEmailExist = true;
 
   ExistingData.forEach((item) => {
-    if (emailData == item.email) {
+    if (emailData === item.email) {
       showErrorMessage(emailError, "email already exists");
       isEmailExist = false;
     }
 
-    if (phone == item.contactNo) {
+    if (phone === item.contactNumber) {
       showErrorMessage(contactError, "phone no already exists");
       isPhoneExist = false;
     }
