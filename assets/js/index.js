@@ -15,15 +15,12 @@ const contactError = document.querySelector(".error-cname");
 const emailError = document.querySelector(".error-ename");
 const subjectError = document.querySelector(".error-subject");
 
-// validation errors
-
 const form = document.querySelector(".contactform");
 
 let data = JSON.parse(localStorage.getItem("contacts")) || [];
 // localStorage.clear();
 
 // disable submit btn
-
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -44,19 +41,6 @@ form.addEventListener("submit", (event) => {
     isPhoneExist,
   } = ValidateForm();
 
-  console.log(
-    fnameValid,
-    lnameValid,
-    subValid,
-    emailValid,
-    "emailvalid",
-    isPhoneValid,
-    "phonevalid",
-    isEmailExist,
-    isPhoneExist,
-    "before submit"
-  );
-
   if (
     fnameValid &&
     lnameValid &&
@@ -76,7 +60,7 @@ form.addEventListener("submit", (event) => {
     };
 
     data.push(Details);
-    // console.log(data, "before pushing in local storage array");
+
     localStorage.setItem("contacts", JSON.stringify(data));
 
     //render data fromm validated data
