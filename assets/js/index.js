@@ -39,8 +39,9 @@ form.addEventListener("submit", (event) => {
     lnameValid,
     subValid,
     emailValid,
-    phoneValid,
+    isPhoneValid,
     isEmailExist,
+    isPhoneExist,
   } = ValidateForm();
 
   console.log(
@@ -48,9 +49,12 @@ form.addEventListener("submit", (event) => {
     lnameValid,
     subValid,
     emailValid,
-    phoneValid,
+    "emailvalid",
+    isPhoneValid,
+    "phonevalid",
     isEmailExist,
-    "isemailExist"
+    isPhoneExist,
+    "before submit"
   );
 
   if (
@@ -58,8 +62,9 @@ form.addEventListener("submit", (event) => {
     lnameValid &&
     subValid &&
     emailValid &&
-    phoneValid &&
-    isEmailExist
+    isPhoneValid &&
+    isEmailExist &&
+    isPhoneExist
   ) {
     // data
     const Details = {
@@ -125,18 +130,19 @@ function ValidateForm() {
   let subject = subjectElement.value;
 
   const isEmailValid = emailPattern.test(emailData);
+  console.log(isEmailValid);
   const isPhoneValid = phonePattern.test(phone);
+  console.log(isPhoneValid);
   const isNameValid1 = namePattern.test(fname);
   const isNameValid2 = namePattern.test(lname);
 
+  // flags
   let fnameValid = false;
   let lnameValid = false;
   let subValid = false;
-  let phoneValid = false;
   let emailValid = false;
-  let isPhoneExist = false;
-  let isEmailExist = false;
 
+  // console.log(emailValid, "inital");
   if (fname.length < 3) {
     showErrorMessage(firstNameError, "please enter more than 3 letters");
     fnameValid = false;
@@ -168,11 +174,9 @@ function ValidateForm() {
   }
 
   if (!isPhoneValid) {
-    phoneValid = false;
     showErrorMessage(contactError, "Please enter a valid contact No");
   } else {
     hideErrorMessage(contactError, "");
-    phoneValid = true;
   }
 
   if (!isEmailValid) {
@@ -183,16 +187,20 @@ function ValidateForm() {
     emailValid = true;
   }
 
+  // for existing data
   const ExistingData = JSON.parse(localStorage.getItem("contacts")) || [];
+  let isPhoneExist = true;
+  let isEmailExist = true;
 
   ExistingData.forEach((item) => {
     if (emailData == item.email) {
       showErrorMessage(emailError, "email already exists");
-      console.log("here");
-      return (isEmailExist = false);
-    } else {
-      hideErrorMessage(emailError, "");
-      return (isEmailExist = true);
+      isEmailExist = false;
+    }
+
+    if (phone == item.contactNo) {
+      showErrorMessage(contactError, "phone no already exists");
+      isPhoneExist = false;
     }
   });
 
@@ -200,9 +208,10 @@ function ValidateForm() {
     fnameValid,
     lnameValid,
     subValid,
-    phoneValid,
     emailValid,
+    isPhoneValid,
     isEmailExist,
+    isPhoneExist,
   };
 }
 
